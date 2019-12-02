@@ -1,4 +1,6 @@
 server:
+  servlet:
+    context-path: /xxgl
   port: 8086
 mybatis:
   typeAliasesPackage: com.mf.demo.*.model
@@ -6,9 +8,9 @@ mybatis:
 spring:
   datasource:
     name: test
-    url: jdbc:mysql://192.168.1.112:3306/test
+    url: jdbc:mysql://192.168.0.0.1:3306/xxgl
     username: root
-    password: xxx
+    password: 123@qwe
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver

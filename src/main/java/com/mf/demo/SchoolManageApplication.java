@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Version : 1.0
  */
 @SpringBootApplication
-public class StartApplication {
+public class SchoolManageApplication {
 
 	/**
 	 * @Description
@@ -25,7 +25,7 @@ public class StartApplication {
 	 * @return  void
 	 */
 	public static void main(String[] args) {
-		SpringApplication.run(StartApplication.class, args);
+		SpringApplication.run(SchoolManageApplication.class, args);
 	}
 
 }
