@@ -4,11 +4,11 @@ server:
   port: 8086
 mybatis:
   typeAliasesPackage: com.mf.demo.*.model
-  mapperLocations: classpath:mapper/*.*.xml
+  mapperLocations: classpath:mapper/*/*Mapper.xml
 spring:
   datasource:
     name: test
-    url: jdbc:mysql://192.168.0.0.1:3306/xxgl
+    url: jdbc:mysql://127.0.0.1:3306/xxgl?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
     username: root
     password: 123@qwe
     # 使用druid数据源

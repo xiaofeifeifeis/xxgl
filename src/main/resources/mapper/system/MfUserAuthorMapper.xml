@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mf.demo.system.dao.MfUserAuthorDao" >
+  <resultMap id="BaseResultMap" type="com.mf.demo.system.model.MfUserAuthor" >
+    <id column="AUTHOR_ID" property="authorId" jdbcType="VARCHAR" />
+    <result column="FUNC_ID" property="funcId" jdbcType="VARCHAR" />
+    <result column="FUNC_NAME" property="funcName" jdbcType="VARCHAR" />
+    <result column="FUNC_ENABLED" property="funcEnabled" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    AUTHOR_ID, FUNC_ID, FUNC_NAME, FUNC_ENABLED
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from mf_user_author
+    where AUTHOR_ID = #{authorId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from mf_user_author
+    where AUTHOR_ID = #{authorId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mf.demo.system.model.MfUserAuthor" >
+    insert into mf_user_author (AUTHOR_ID, FUNC_ID, FUNC_NAME, 
+      FUNC_ENABLED)
+    values (#{authorId,jdbcType=VARCHAR}, #{funcId,jdbcType=VARCHAR}, #{funcName,jdbcType=VARCHAR}, 
+      #{funcEnabled,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mf.demo.system.model.MfUserAuthor" >
+    insert into mf_user_author
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="authorId != null" >
+        AUTHOR_ID,
+      </if>
+      <if test="funcId != null" >
+        FUNC_ID,
+      </if>
+      <if test="funcName != null" >
+        FUNC_NAME,
+      </if>
+      <if test="funcEnabled != null" >
+        FUNC_ENABLED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="authorId != null" >
+        #{authorId,jdbcType=VARCHAR},
+      </if>
+      <if test="funcId != null" >
+        #{funcId,jdbcType=VARCHAR},
+      </if>
+      <if test="funcName != null" >
+        #{funcName,jdbcType=VARCHAR},
+      </if>
+      <if test="funcEnabled != null" >
+        #{funcEnabled,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mf.demo.system.model.MfUserAuthor" >
+    update mf_user_author
+    <set >
+      <if test="funcId != null" >
+        FUNC_ID = #{funcId,jdbcType=VARCHAR},
+      </if>
+      <if test="funcName != null" >
+        FUNC_NAME = #{funcName,jdbcType=VARCHAR},
+      </if>
+      <if test="funcEnabled != null" >
+        FUNC_ENABLED = #{funcEnabled,jdbcType=TINYINT},
+      </if>
+    </set>
+    where AUTHOR_ID = #{authorId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mf.demo.system.model.MfUserAuthor" >
+    update mf_user_author
+    set FUNC_ID = #{funcId,jdbcType=VARCHAR},
+      FUNC_NAME = #{funcName,jdbcType=VARCHAR},
+      FUNC_ENABLED = #{funcEnabled,jdbcType=TINYINT}
+    where AUTHOR_ID = #{authorId,jdbcType=VARCHAR}
+  </update>
+</mapper>

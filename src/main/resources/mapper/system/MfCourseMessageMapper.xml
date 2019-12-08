@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mf.demo.system.dao.MfCourseMessageDao" >
+  <resultMap id="BaseResultMap" type="com.mf.demo.system.model.MfCourseMessage" >
+    <id column="COURSE_ID" property="courseId" jdbcType="VARCHAR" />
+    <result column="COURSE_NO" property="courseNo" jdbcType="VARCHAR" />
+    <result column="COURSE_NAME" property="courseName" jdbcType="VARCHAR" />
+    <result column="COURSE_TYPE" property="courseType" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    COURSE_ID, COURSE_NO, COURSE_NAME, COURSE_TYPE, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from mf_course_message
+    where COURSE_ID = #{courseId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from mf_course_message
+    where COURSE_ID = #{courseId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mf.demo.system.model.MfCourseMessage" >
+    insert into mf_course_message (COURSE_ID, COURSE_NO, COURSE_NAME, 
+      COURSE_TYPE, REMARK)
+    values (#{courseId,jdbcType=VARCHAR}, #{courseNo,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}, 
+      #{courseType,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mf.demo.system.model.MfCourseMessage" >
+    insert into mf_course_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        COURSE_ID,
+      </if>
+      <if test="courseNo != null" >
+        COURSE_NO,
+      </if>
+      <if test="courseName != null" >
+        COURSE_NAME,
+      </if>
+      <if test="courseType != null" >
+        COURSE_TYPE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseNo != null" >
+        #{courseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseType != null" >
+        #{courseType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mf.demo.system.model.MfCourseMessage" >
+    update mf_course_message
+    <set >
+      <if test="courseNo != null" >
+        COURSE_NO = #{courseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        COURSE_NAME = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseType != null" >
+        COURSE_TYPE = #{courseType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where COURSE_ID = #{courseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mf.demo.system.model.MfCourseMessage" >
+    update mf_course_message
+    set COURSE_NO = #{courseNo,jdbcType=VARCHAR},
+      COURSE_NAME = #{courseName,jdbcType=VARCHAR},
+      COURSE_TYPE = #{courseType,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where COURSE_ID = #{courseId,jdbcType=VARCHAR}
+  </update>
+</mapper>

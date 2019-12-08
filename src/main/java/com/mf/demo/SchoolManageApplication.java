@@ -1,7 +1,9 @@
 package com.mf.demo;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @Description Spring Boot项目启动类
@@ -14,6 +16,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Version : 1.0
  */
 @SpringBootApplication
+@ComponentScan(basePackages = "com.mf.demo.*.*")
+@MapperScan("com.mf.demo.*.dao")
 public class SchoolManageApplication {
 
 	/**

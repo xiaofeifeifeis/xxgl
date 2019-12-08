@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mf.demo.loginUser.dao.LoginUserDao" >
+  <resultMap id="BaseResultMap" type="com.mf.demo.loginUser.model.LoginUser"
+             extends="com.mf.demo.system.dao.MfLoginUserDao.BaseResultMap">
+  </resultMap>
+  <select id="queryAllLoginUser" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="com.mf.demo.system.dao.MfLoginUserDao.Base_Column_List" />
+    from mf_login_user
+    <where>
+        <if test="userId!='' and userId!=null">
+            and USER_ID = #{userId,jdbcType=VARCHAR}
+        </if>
+    </where>
+  </select>
+</mapper>

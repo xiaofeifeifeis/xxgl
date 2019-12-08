@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mf.demo.system.dao.MfGradeMessageDao" >
+  <resultMap id="BaseResultMap" type="com.mf.demo.system.model.MfGradeMessage" >
+    <id column="GRADE_ID" property="gradeId" jdbcType="VARCHAR" />
+    <result column="GRADE_NO" property="gradeNo" jdbcType="VARCHAR" />
+    <result column="GRADE_NAME" property="gradeName" jdbcType="VARCHAR" />
+    <result column="GRADE_ATTRIBUTE" property="gradeAttribute" jdbcType="VARCHAR" />
+    <result column="GRADUATION_STATUS" property="graduationStatus" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GRADE_ID, GRADE_NO, GRADE_NAME, GRADE_ATTRIBUTE, GRADUATION_STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from mf_grade_message
+    where GRADE_ID = #{gradeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from mf_grade_message
+    where GRADE_ID = #{gradeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mf.demo.system.model.MfGradeMessage" >
+    insert into mf_grade_message (GRADE_ID, GRADE_NO, GRADE_NAME, 
+      GRADE_ATTRIBUTE, GRADUATION_STATUS)
+    values (#{gradeId,jdbcType=VARCHAR}, #{gradeNo,jdbcType=VARCHAR}, #{gradeName,jdbcType=VARCHAR}, 
+      #{gradeAttribute,jdbcType=VARCHAR}, #{graduationStatus,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mf.demo.system.model.MfGradeMessage" >
+    insert into mf_grade_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gradeId != null" >
+        GRADE_ID,
+      </if>
+      <if test="gradeNo != null" >
+        GRADE_NO,
+      </if>
+      <if test="gradeName != null" >
+        GRADE_NAME,
+      </if>
+      <if test="gradeAttribute != null" >
+        GRADE_ATTRIBUTE,
+      </if>
+      <if test="graduationStatus != null" >
+        GRADUATION_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gradeId != null" >
+        #{gradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeNo != null" >
+        #{gradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeName != null" >
+        #{gradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeAttribute != null" >
+        #{gradeAttribute,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationStatus != null" >
+        #{graduationStatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mf.demo.system.model.MfGradeMessage" >
+    update mf_grade_message
+    <set >
+      <if test="gradeNo != null" >
+        GRADE_NO = #{gradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeName != null" >
+        GRADE_NAME = #{gradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeAttribute != null" >
+        GRADE_ATTRIBUTE = #{gradeAttribute,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationStatus != null" >
+        GRADUATION_STATUS = #{graduationStatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where GRADE_ID = #{gradeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mf.demo.system.model.MfGradeMessage" >
+    update mf_grade_message
+    set GRADE_NO = #{gradeNo,jdbcType=VARCHAR},
+      GRADE_NAME = #{gradeName,jdbcType=VARCHAR},
+      GRADE_ATTRIBUTE = #{gradeAttribute,jdbcType=VARCHAR},
+      GRADUATION_STATUS = #{graduationStatus,jdbcType=TINYINT}
+    where GRADE_ID = #{gradeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

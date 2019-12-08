@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mf.demo.system.dao.MfTeacherMessageDao" >
+  <resultMap id="BaseResultMap" type="com.mf.demo.system.model.MfTeacherMessage" >
+    <id column="TEACHER_ID" property="teacherId" jdbcType="VARCHAR" />
+    <result column="TEACHER_NO" property="teacherNo" jdbcType="VARCHAR" />
+    <result column="TEACHER_NAME" property="teacherName" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="SECOND_CONTACTt" property="secondContactt" jdbcType="VARCHAR" />
+    <result column="TEACHER_STATUS" property="teacherStatus" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TEACHER_ID, TEACHER_NO, TEACHER_NAME, PHONE, SECOND_CONTACTt, TEACHER_STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from mf_teacher_message
+    where TEACHER_ID = #{teacherId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from mf_teacher_message
+    where TEACHER_ID = #{teacherId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mf.demo.system.model.MfTeacherMessage" >
+    insert into mf_teacher_message (TEACHER_ID, TEACHER_NO, TEACHER_NAME, 
+      PHONE, SECOND_CONTACTt, TEACHER_STATUS
+      )
+    values (#{teacherId,jdbcType=VARCHAR}, #{teacherNo,jdbcType=VARCHAR}, #{teacherName,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{secondContactt,jdbcType=VARCHAR}, #{teacherStatus,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mf.demo.system.model.MfTeacherMessage" >
+    insert into mf_teacher_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="teacherId != null" >
+        TEACHER_ID,
+      </if>
+      <if test="teacherNo != null" >
+        TEACHER_NO,
+      </if>
+      <if test="teacherName != null" >
+        TEACHER_NAME,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="secondContactt != null" >
+        SECOND_CONTACTt,
+      </if>
+      <if test="teacherStatus != null" >
+        TEACHER_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherNo != null" >
+        #{teacherNo,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null" >
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="secondContactt != null" >
+        #{secondContactt,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherStatus != null" >
+        #{teacherStatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mf.demo.system.model.MfTeacherMessage" >
+    update mf_teacher_message
+    <set >
+      <if test="teacherNo != null" >
+        TEACHER_NO = #{teacherNo,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null" >
+        TEACHER_NAME = #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="secondContactt != null" >
+        SECOND_CONTACTt = #{secondContactt,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherStatus != null" >
+        TEACHER_STATUS = #{teacherStatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where TEACHER_ID = #{teacherId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mf.demo.system.model.MfTeacherMessage" >
+    update mf_teacher_message
+    set TEACHER_NO = #{teacherNo,jdbcType=VARCHAR},
+      TEACHER_NAME = #{teacherName,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      SECOND_CONTACTt = #{secondContactt,jdbcType=VARCHAR},
+      TEACHER_STATUS = #{teacherStatus,jdbcType=TINYINT}
+    where TEACHER_ID = #{teacherId,jdbcType=VARCHAR}
+  </update>
+</mapper>

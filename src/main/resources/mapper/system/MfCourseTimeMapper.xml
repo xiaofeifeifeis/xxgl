@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mf.demo.system.dao.MfCourseTimeDao" >
+  <resultMap id="BaseResultMap" type="com.mf.demo.system.model.MfCourseTime" >
+    <id column="TIME_ID" property="timeId" jdbcType="VARCHAR" />
+    <result column="TIME_NO" property="timeNo" jdbcType="VARCHAR" />
+    <result column="TIME_NAME" property="timeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TIME_ID, TIME_NO, TIME_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from mf_course_time
+    where TIME_ID = #{timeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from mf_course_time
+    where TIME_ID = #{timeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mf.demo.system.model.MfCourseTime" >
+    insert into mf_course_time (TIME_ID, TIME_NO, TIME_NAME
+      )
+    values (#{timeId,jdbcType=VARCHAR}, #{timeNo,jdbcType=VARCHAR}, #{timeName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mf.demo.system.model.MfCourseTime" >
+    insert into mf_course_time
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="timeId != null" >
+        TIME_ID,
+      </if>
+      <if test="timeNo != null" >
+        TIME_NO,
+      </if>
+      <if test="timeName != null" >
+        TIME_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="timeId != null" >
+        #{timeId,jdbcType=VARCHAR},
+      </if>
+      <if test="timeNo != null" >
+        #{timeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="timeName != null" >
+        #{timeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mf.demo.system.model.MfCourseTime" >
+    update mf_course_time
+    <set >
+      <if test="timeNo != null" >
+        TIME_NO = #{timeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="timeName != null" >
+        TIME_NAME = #{timeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TIME_ID = #{timeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mf.demo.system.model.MfCourseTime" >
+    update mf_course_time
+    set TIME_NO = #{timeNo,jdbcType=VARCHAR},
+      TIME_NAME = #{timeName,jdbcType=VARCHAR}
+    where TIME_ID = #{timeId,jdbcType=VARCHAR}
+  </update>
+</mapper>
