@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @Version : 1.0
  */
 @SpringBootApplication
-@ComponentScan(basePackages = "com.mf.demo.*.*")
+@ComponentScan(basePackages = {"com.mf.demo.*.*","com.mf.redis"})
 @MapperScan("com.mf.demo.*.dao")
 public class SchoolManageApplication {
 
